@@ -46,7 +46,9 @@ class GuzzleClient extends AbstractClient {
 		try {
 			$request = $this->client()
 				->createRequest($method, $endpoint->getAbsoluteUri(),
-				$method === 'GET' ? [] : $body);
+				$method === 'GET' ? [] : [
+					'body' => $body
+				]);
 			$request->setHeaders($extraHeaders);
 
 			if($method === 'GET' && is_array($body)) {
