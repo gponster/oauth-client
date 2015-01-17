@@ -40,7 +40,7 @@ class Client extends AbstractService {
 			if(! $reflClass->implementsInterface('Gponster\\OAuth\\TokenStorageInterface')) {
 				throw new \RuntimeException(
 					sprintf(
-						'User validator class \'%s\' must implements interface Gponster\\OAuth\\TokenStorageInterface.',
+						'Token storage class \'%s\' must implements interface Gponster\\OAuth\\TokenStorageInterface.',
 						$validatorName));
 			}
 		} else {
@@ -51,14 +51,14 @@ class Client extends AbstractService {
 
 		// Get HTTP client object
 		if(isset($options['http_client'])) {
-			$clientClassName = $options['http_client'];
+			$httpClientClassName = $options['http_client'];
 
-			if(! class_exists($clientClassName)) {
+			if(! class_exists($httpClientClassName)) {
 				throw new \RuntimeException(
-					sprintf('HTTP client class \'%s\' does not exist.', $storageClassName));
+					sprintf('HTTP client class \'%s\' does not exist.', $httpClientClassName));
 			}
 
-			$reflClass = new \ReflectionClass($clientClassName);
+			$reflClass = new \ReflectionClass($httpClientClassName);
 			if(! $reflClass->implementsInterface(
 				'Gponster\\OAuth\\Http\\Client\\ClientInterface')) {
 				throw new \RuntimeException(
@@ -67,10 +67,10 @@ class Client extends AbstractService {
 						$validatorName));
 			}
 		} else {
-			$clientClassName = '\\Gponster\\OAuth\\Http\\Client\\GuzzleClient';
+			$httpClientClassName = '\\Gponster\\OAuth\\Http\\Client\\GuzzleClient';
 		}
 
-		$httpClient = new $clientClassName();
+		$httpClient = new $httpClientClassName();
 
 		$userAgent = isset($options['user_agent']) ? $options['user_agent'] : null;
 		$httpClient->setUserAgent($userAgent);
