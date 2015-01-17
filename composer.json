@@ -1,6 +1,7 @@
 {
     "name": "gponster/oauth-client",
-    "description": "Simple OAuth 1 client based-on PHP 5.3+ oAuth 1/2 Client Library https://github.com/Lusitanian/PHPoAuthLib",
+    "description": "Simple OAuth 1 client based-on PHP 5.3+ oAuth 1/2 Client Library https://github.com/Lusitanian/PHPoAuthLib",	
+    "license": "MIT",
     "authors": [
         {
             "name": "Vu Dang a.k.a Gponster",
@@ -19,5 +20,5 @@
             "Gponster\\OAuth": "src/"
         }
     },
-    "minimum-stability": "stable"
+    "minimum-stability": "dev"
 }
